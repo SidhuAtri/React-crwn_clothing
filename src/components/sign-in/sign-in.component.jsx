@@ -1,12 +1,13 @@
-import React, { Component } from "react";
+import React from "react";
 
-import "./sign-in.styles.scss";
 import FormInput from "../form-input/form-input.component";
 import CustomButton from "../custom-button/custom-button.component";
 
 import { auth, signInWithGoogle } from "../../firebase/firebase.utils";
 
-export default class SignIn extends Component {
+import "./sign-in.styles.scss";
+
+class SignIn extends React.Component {
   constructor(props) {
     super(props);
 
@@ -27,8 +28,6 @@ export default class SignIn extends Component {
     } catch (error) {
       console.log(error);
     }
-
-    this.setState({ email: "", password: "" });
   };
 
   handleChange = (event) => {
@@ -51,18 +50,17 @@ export default class SignIn extends Component {
             value={this.state.email}
             label="email"
           />
-
           <FormInput
             name="password"
             type="password"
-            handleChange={this.handleChange}
             value={this.state.password}
+            handleChange={this.handleChange}
             label="password"
           />
           <div className="buttons">
-            <CustomButton type="submit">Sign In</CustomButton>
+            <CustomButton type="submit"> Sign in </CustomButton>
             <CustomButton onClick={signInWithGoogle} isGoogleSignIn>
-              Sign In with Google
+              Sign in with Google
             </CustomButton>
           </div>
         </form>
@@ -70,3 +68,5 @@ export default class SignIn extends Component {
     );
   }
 }
+
+export default SignIn;
